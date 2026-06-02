@@ -1,0 +1,42 @@
+#include <stdint.h>
+
+#define SIZE 10
+
+// The array in memory we want to sort
+uint32_t numbers[SIZE] = {85, 23, 67, 12, 90, 34, 56, 78, 45, 9};
+
+// Function to perform Bubble Sort
+void bubbleSort(uint32_t arr[], int n, int ascending) {
+    int i, j;
+    uint32_t temp;
+    
+    for (i = 0; i < n - 1; i++) {
+        for (j = 0; j < n - i - 1; j++) {
+            
+            // For Ascending: Swap if the current element is GREATER than the next
+            // For Descending: Swap if the current element is LESS than the next
+            int shouldSwap = 0;
+            if (ascending && (arr[j] > arr[j + 1])) {
+                shouldSwap = 1;
+            } else if (!ascending && (arr[j] < arr[j + 1])) {
+                shouldSwap = 1;
+            }
+
+            if (shouldSwap) {
+                temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}
+
+int main(void) {
+    // Call the sort function (1 for Ascending, 0 for Descending)
+    bubbleSort(numbers, SIZE, 1); 
+
+    // Infinite loop to halt program execution safely
+    while (1) {
+        // Microcontroller stays here after sorting
+    }
+}
